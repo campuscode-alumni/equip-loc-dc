@@ -1,4 +1,13 @@
 class ContractsController < ApplicationController
+
+  def index
+    @contracts = Contract.all
+  end
+
+  def show
+    @contract = Contract.find(params[:id])
+  end
+
   def new
     @contract = Contract.new
   end
@@ -11,10 +20,6 @@ class ContractsController < ApplicationController
       flash[:error] = "Não foi possível emitir contrato."
       render :new
     end
-  end
-
-  def show
-    @contract = Contract.find(params[:id])
   end
 
   private
