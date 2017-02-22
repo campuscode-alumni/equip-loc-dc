@@ -12,6 +12,20 @@
 
 ActiveRecord::Schema.define(version: 20170221225113) do
 
+  create_table "contracts", force: :cascade do |t|
+    t.string   "customer"
+    t.string   "delivery_address"
+    t.string   "equipment"
+    t.string   "rental_period"
+    t.float    "amount"
+    t.float    "discount"
+    t.float    "total_amount"
+    t.string   "payment_method"
+    t.string   "contact"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "equipment", force: :cascade do |t|
     t.string   "serial_number"
     t.decimal  "replacement_value"
