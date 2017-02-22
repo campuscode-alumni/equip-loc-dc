@@ -4,7 +4,7 @@
   <dd><%= @contract.customer %></dd>
 
   <dt>Endereço de Entrega</dt>
-  <dd><%= @contract.delivery_address %></dd>
+  <dd><h2><%= @contract.delivery_address %></h2></dd>
 
   <dt>Equipamento</dt>
   <dd><%= @contract.equipment %></dd>
@@ -28,3 +28,5 @@
   <dd><%= @contract.contact %></dd>
 
 </dl>
+
+<%= link_to "Voltar", contracts_path %>
