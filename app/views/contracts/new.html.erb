@@ -1,0 +1,48 @@
+<%= form_for @contract do |f| %>
+  <div class="information">
+    <%= f.label :customer, 'Cliente' %>
+    <%= f.text_field :customer %>
+  </div>
+  <div class="information">
+    <%= f.label :delivery_address, 'Endereço de Entrega' %>
+    <%= f.text_field :delivery_address %>
+  </div>
+  <div class="information">
+    <%= f.label :equipment, 'Equipamento' %>
+    <%= f.text_field :equipment %>
+  </div>
+  <div class="information">
+    <%= f.label :rental_period, 'Prazo de Locação' %>
+    <%= f.text_field :rental_period %>
+  </div>
+  <div class="information">
+    <%= f.label :amount, 'Valor' %>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="information">
+    <%= f.label :discount, 'Desconto' %>
+    <%= f.text_field :discount %>
+  </div>
+  <div class="information">
+    <%= f.label :total_amount, 'Valor Total' %>
+    <%= f.text_field :total_amount %>
+  </div>
+  <div class="information">
+    <%= f.label :payment_method, 'Forma de Pagamento' %>
+    <%= f.text_field :payment_method %>
+  </div>
+  <div class="information">
+    <%= f.label :contact, 'Responsável' %>
+    <%= f.text_field :contact %>
+  </div>
+  <div class="information">
+    <%= f.submit 'Emitir Contrato' %>
+  </div>
+
+
+
+
+
+
+
+<% end %>
