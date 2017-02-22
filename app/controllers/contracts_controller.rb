@@ -7,6 +7,9 @@ class ContractsController < ApplicationController
     @contract = Contract.new contract_params
     if @contract.save
       redirect_to @contract
+    else
+      flash[:error] = "Não foi possível emitir contrato."
+      render :new
     end
   end
 

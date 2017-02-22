@@ -36,4 +36,12 @@ feature  'User issues contract' do
     expect(page).to have_content "Forma de Pagamento #{contract.payment_method}"
     expect(page).to have_content "Responsável #{contract.contact}"
   end
+
+  scenario 'and shout fill all fields' do
+    visit new_contract_path
+
+    click_on 'Emitir Contrato'
+
+    expect(page).to have_content "Não foi possível emitir contrato."
+  end
 end
