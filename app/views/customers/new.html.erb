@@ -1,0 +1,20 @@
+<%= flash[:error] %>
+<%= form_for @customer do |f|%>
+  <%= f.label :name, "Nome" %>
+  <%= f.text_field :name%>
+  <%= f.label :legal_name, "Razão Social" %>
+  <%= f.text_field :legal_name%>
+  <%= f.label :customer_type, "Tipo de Cliente" %>
+  <%= f.text_field :customer_type%>
+  <%= f.label :contact_name, "Contato" %>
+  <%= f.text_field :contact_name%>
+  <%= f.label :phone_number, "Telefone"%>
+  <%= f.text_field :phone_number%>
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email%>
+  <%= f.label :address, "Endereço" %>
+  <%= f.text_field :address%>
+  <%= f.label :document, "CPF/CNPJ" %>
+  <%= f.text_field :document%>
+   <%=f.submit "Cadastrar Cliente"%>
+<%end%>
