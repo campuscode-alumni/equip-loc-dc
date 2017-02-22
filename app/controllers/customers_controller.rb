@@ -7,6 +7,9 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     if @customer.save
       redirect_to @customer
+    else
+    flash[:error] = "Não foi possível cadastrar o cliente"
+    render :new
     end
   end
 
