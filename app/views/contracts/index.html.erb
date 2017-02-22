@@ -1,0 +1,5 @@
+<% @contracts.each do |contract| %>
+  <h2><%= contract.delivery_address %></h2>
+  <%= contract.customer %>
+  <%= contract.contact %>
+<% end %>

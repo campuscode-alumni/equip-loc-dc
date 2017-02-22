@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :contracts, only:[:new, :create, :show]
+  resources :contracts, only:[:new, :create, :show, :index]
 end
