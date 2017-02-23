@@ -1,0 +1,10 @@
+<%= flash[:error]%>
+<%= form_for @proposal do |f|%>
+  <%= f.label :name,'Nome' %>
+  <%= f.text_field :name%>
+  <%= f.label :email,'Email' %>
+  <%= f.text_field :email%>
+  <%= f.label :message,'Mensagem' %>
+  <%= f.text_area :message%>
+  <%=f.submit 'Enviar Solicitação'%>
+<%end%>
