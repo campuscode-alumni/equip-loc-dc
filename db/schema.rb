@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222231436) do
+ActiveRecord::Schema.define(version: 20170223003457) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "contracts", force: :cascade do |t|
     t.string   "customer"
@@ -47,19 +53,21 @@ ActiveRecord::Schema.define(version: 20170222231436) do
     t.datetime "acquisition_date"
     t.string   "usage_limit"
     t.string   "image"
-    t.string   "category"
     t.string   "manufacturer"
     t.string   "supplier"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_equipment_on_category_id"
   end
 
   create_table "prices", force: :cascade do |t|
     t.integer  "rental_period"
-    t.string   "category"
     t.decimal  "value"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_prices_on_category_id"
   end
 
   create_table "proposals", force: :cascade do |t|

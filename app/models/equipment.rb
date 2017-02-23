@@ -4,4 +4,7 @@ class Equipment < ApplicationRecord
             :usage_limit, :image, :category, :manufacturer, :supplier, presence: true
 
   validates :replacement_value, numericality: {greater_than: 0}
+
+  belongs_to :category
+
 end
