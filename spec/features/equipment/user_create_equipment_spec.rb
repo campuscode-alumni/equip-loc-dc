@@ -3,10 +3,12 @@ require 'rails_helper'
 feature 'User create equipment' do
   scenario 'successfully' do
 
+    category = Category.create(name: 'Betoneira')
+
     equipment = Equipment.new(serial_number: 'DAH787D', replacement_value: 50000.00,
                               name: 'Furadeira ASX45', description: 'Impacto 20mm',
                               acquisition_date: '05/01/2017', usage_limit: '2 anos',
-                              image: 'http://www.google.com.br', category: 'Furadeira',
+                              image: 'http://www.google.com.br', category: category,
                               manufacturer: 'Bosh', supplier: 'Extra')
 
     visit new_equipment_path
@@ -18,7 +20,7 @@ feature 'User create equipment' do
     fill_in 'Data de Aquisição', with: equipment.acquisition_date
     fill_in 'Vida Útil', with: equipment.usage_limit
     fill_in 'Foto', with: equipment.image
-    fill_in 'Tipo de Equipamento', with: equipment.category
+    select category.name, from: 'Tipo de Equipamento'
     fill_in 'Fabricante', with: equipment.manufacturer
     fill_in 'Fornecedor', with: equipment.supplier
 
@@ -31,7 +33,7 @@ feature 'User create equipment' do
     expect(page).to have_content equipment.acquisition_date
     expect(page).to have_content equipment.usage_limit
     expect(page).to have_content equipment.image
-    expect(page).to have_content equipment.category
+    expect(page).to have_content equipment.category.name
     expect(page).to have_content equipment.manufacturer
     expect(page).to have_content equipment.supplier
   end
