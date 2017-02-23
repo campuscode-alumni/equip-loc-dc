@@ -1,0 +1,18 @@
+<%= notice %>
+<h1>Novo Preço</h1>
+<%= form_for @price do |f| %>
+  <div>
+    <%= f.label :rental_period, 'Período de Locação' %>
+    <%= f.text_field :rental_period %>
+  </div>
+  <div>
+    <%= f.label :category, 'Tipo de Equipamento' %>
+    <%= f.text_field :category %>
+  </div>
+  <div>
+    <%= f.label :value, 'Valor' %>
+    <%= f.text_field :value %>
+  </div>
+  <%= f.submit 'Cadastrar Preço' %>
+
+<% end %>
