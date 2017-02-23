@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   end
   resources :customers
   resources :equipment, only: [:new, :create, :show]
+  resources :delivery_receipts, only: [:show]
 end

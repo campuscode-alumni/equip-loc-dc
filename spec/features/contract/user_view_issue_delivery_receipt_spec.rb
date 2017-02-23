@@ -21,10 +21,10 @@ feature 'User issues delivery receipt' do
 
     click_on "Emitir Recibo de Entrega"
 
-    expect(page).to have_content "São Paulo, #{contract.created_at.strftime("%d de %B de %Y")}
+    expect(page).to have_content "São Paulo, #{contract.delivery_receipt.issue_date.strftime("%d de %B de %Y")}
     Eu, #{contract.contact}
     em nome da empresa #{contract.customer}. (razão social), inscrita no CNPJ x
-    declaro ter recebido os equipamentos #{contract.equipement}
+    declaro ter recebido os equipamentos #{contract.equipment}
     pelo período de #{contract.rental_period} em perfeitas condições de uso
     no endereço #{contract.delivery_address}.
     de acordo com o contrato #{contract.id}
