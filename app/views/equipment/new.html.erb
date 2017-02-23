@@ -21,8 +21,8 @@
   <%= f.label :image, 'Foto' %>
   <%= f.text_field :image %>
 
-  <%= f.label :category, 'Tipo de Equipamento' %>
-  <%= f.text_field :category %>
+  <%= f.label :category_id, 'Tipo de Equipamento' %>
+  <%= f.collection_select(:category_id, @categories, :id, :name) %>
 
   <%= f.label :manufacturer, 'Fabricante' %>
   <%= f.text_field :manufacturer %>
