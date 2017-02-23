@@ -9,7 +9,9 @@ feature 'User view contract details' do
                             total_amount: 700.00,
                             discount: 100.00,
                             payment_method: 'à vista',
-                            contact: 'Sérgio')
+                            contact: 'Sérgio',
+                            start_date: Time.zone.today,
+                            end_date: 5.days.from_now)
 
     visit contracts_path
 
@@ -23,6 +25,9 @@ feature 'User view contract details' do
     expect(page).to have_content contract.discount
     expect(page).to have_content contract.total_amount
     expect(page).to have_content contract.payment_method
+    expect(page).to have_content contract.start_date
+    expect(page).to have_content contract.end_date
+    #expect(page).to not have_content contract.issue_date
     expect(page).to have_content contract.contact
   end
 
@@ -35,12 +40,14 @@ feature 'User view contract details' do
                             total_amount: 700.00,
                             discount: 100.00,
                             payment_method: 'à vista',
-                            contact: 'Sérgio')
+                            contact: 'Sérgio',
+                            start_date: Time.zone.today,
+                            end_date: 5.days.from_now)
 
     visit contract_path(contract)
 
     click_on 'Voltar'
 
-    expect(current_path).to eq(contracts_path)                        
+    expect(current_path).to eq(contracts_path)
   end
 end

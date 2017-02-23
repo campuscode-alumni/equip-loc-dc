@@ -10,19 +10,22 @@ feature  'User issues contract' do
                             total_amount: 700.00,
                             discount: 100.00,
                             payment_method: 'à vista',
-                            contact: 'Sérgio')
+                            contact: 'Sérgio'
+                            )
 
     visit new_contract_path
 
     fill_in 'Cliente',                with: contract.customer
     fill_in 'Endereço de Entrega',    with: contract.delivery_address
-    fill_in 'Equipamento',    with: contract.equipment
+    fill_in 'Equipamento',          with: contract.equipment
     fill_in 'Prazo de Locação', with: contract.rental_period
     fill_in 'Valor',            with: contract.amount
     fill_in 'Desconto',         with: contract.discount
     fill_in 'Valor Total',      with: contract.total_amount
     fill_in 'Forma de Pagamento', with: contract.payment_method
     fill_in 'Responsável',        with: contract.contact
+    fill_in 'Data de Início',   with: '2017-02-22'
+    fill_in 'Data de Devolução', with: '2017-02-27'
 
     click_on 'Emitir Contrato'
 
@@ -34,6 +37,8 @@ feature  'User issues contract' do
     expect(page).to have_content "Desconto #{contract.discount}"
     expect(page).to have_content "Valor Total #{contract.total_amount}"
     expect(page).to have_content "Forma de Pagamento #{contract.payment_method}"
+    expect(page).to have_content "Data de Início #{contract.start_date}"
+    expect(page).to have_content "Data de Devolução #{contract.end_date}"
     expect(page).to have_content "Responsável #{contract.contact}"
   end
 
