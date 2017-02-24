@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20170224000328) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "customer_id"
+    t.date     "start_date"
+    t.date     "end_date"
     t.index ["customer_id"], name: "index_contracts_on_customer_id"
   end
 
@@ -44,6 +46,14 @@ ActiveRecord::Schema.define(version: 20170224000328) do
     t.string   "document"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "delivery_receipts", force: :cascade do |t|
+    t.integer  "contract_id"
+    t.date     "issue_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["contract_id"], name: "index_delivery_receipts_on_contract_id"
   end
 
   create_table "equipment", force: :cascade do |t|

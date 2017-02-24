@@ -1,4 +1,4 @@
-<dl class="">
+<dl>
 
   <dt>Cliente</dt>
   <dd><%= @contract.customer.name %></dd>
@@ -24,9 +24,21 @@
   <dt>Forma de Pagamento</dt>
   <dd><%= @contract.payment_method%></dd>
 
+  <dt>Data de Início</dt>
+  <dd><%= @contract.start_date %></dd>
+
+  <dt>Data de Devolução</dt>
+  <dd><%= @contract.end_date %></dd>
+
   <dt>Responsável</dt>
   <dd><%= @contract.contact %></dd>
 
 </dl>
+<% #link_to com outro METODO %>
+<%if @contract.delivery_receipt.present? %>
+  <%= link_to "Visualizar Recibo de Entrega", delivery_receipt_path(@contract.delivery_receipt)%>
+<%else %>
+  <%= link_to "Emitir Recibo de Entrega", contract_delivery_receipts_path(@contract), method: :post %>  
+<%end%>
 
 <%= link_to "Voltar", contracts_path %>
