@@ -2,7 +2,17 @@ require 'rails_helper'
 
 feature 'User view contracts' do
   scenario 'successfully' do
-    contract = Contract.create(customer: 'Rafael',
+    customer = Customer.create(name:'João Dias',
+                            legal_name:'Grupo Votorantim LTDA.',
+                            customer_type:'PJ',
+                            contact_name:'José Batista',
+                            phone_number:'(011)6573-3030',
+                            email:'contato@grupovotorantim.com',
+                            address:'Av. Paulista, 326',
+                            document: '23.653.876/0001-29')
+
+
+    contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
                             equipment: 'Betoneira 1 tonelada',
                             rental_period: '5 dias',
@@ -14,12 +24,21 @@ feature 'User view contracts' do
     visit contracts_path
 
     expect(page).to have_css('h2', text: contract.delivery_address)
-    expect(page).to have_content contract.customer
+    expect(page).to have_content contract.customer.name
     expect(page).to have_content contract.contact
   end
 
   scenario 'and view a list of contracts' do
-    contract = Contract.create(customer: 'Rafael',
+    customer = Customer.create(name:'João Dias',
+                            legal_name:'Grupo Votorantim LTDA.',
+                            customer_type:'PJ',
+                            contact_name:'José Batista',
+                            phone_number:'(011)6573-3030',
+                            email:'contato@grupovotorantim.com',
+                            address:'Av. Paulista, 326',
+                            document: '23.653.876/0001-29')
+
+    contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
                             equipment: 'Betoneira 1 tonelada',
                             rental_period: '5 dias',
@@ -29,7 +48,7 @@ feature 'User view contracts' do
                             payment_method: 'à vista',
                             contact: 'Sérgio')
 
-    another_contract = Contract.create(customer: 'Israel',
+    another_contract = Contract.create(customer: customer,
                             delivery_address: 'Rua dos Paulistanos, 100',
                             equipment: 'Furadeira 200 Watts',
                             rental_period: '15 dias',
@@ -43,11 +62,11 @@ feature 'User view contracts' do
     visit contracts_path
 
     expect(page).to have_css('h2', text: contract.delivery_address)
-    expect(page).to have_content contract.customer
+    expect(page).to have_content contract.customer.name
     expect(page).to have_content contract.contact
 
     expect(page).to have_css('h2', text: another_contract.delivery_address)
-    expect(page).to have_content another_contract.customer
+    expect(page).to have_content another_contract.customer.name
     expect(page).to have_content another_contract.contact
 
   end

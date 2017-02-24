@@ -1,7 +1,17 @@
 require 'rails_helper'
 feature 'User view contract details' do
   scenario 'successfully' do
-    contract = Contract.create(customer: 'Rafael',
+    customer = Customer.create(name:'João Dias',
+                            legal_name:'Grupo Votorantim LTDA.',
+                            customer_type:'PJ',
+                            contact_name:'José Batista',
+                            phone_number:'(011)6573-3030',
+                            email:'contato@grupovotorantim.com',
+                            address:'Av. Paulista, 326',
+                            document: '23.653.876/0001-29')
+
+
+    contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
                             equipment: 'Betoneira 1 tonelada',
                             rental_period: '5 dias',
@@ -16,7 +26,7 @@ feature 'User view contract details' do
     click_on "Avenida Paulista, 900"
 
     expect(page).to have_css('h2', text: contract.delivery_address)
-    expect(page).to have_content contract.customer
+    expect(page).to have_content contract.customer.name
     expect(page).to have_content contract.equipment
     expect(page).to have_content contract.rental_period
     expect(page).to have_content contract.amount
@@ -27,7 +37,16 @@ feature 'User view contract details' do
   end
 
   scenario 'and return to contract' do
-    contract = Contract.create(customer: 'Rafael',
+    customer = Customer.create(name:'João Dias',
+                            legal_name:'Grupo Votorantim LTDA.',
+                            customer_type:'PJ',
+                            contact_name:'José Batista',
+                            phone_number:'(011)6573-3030',
+                            email:'contato@grupovotorantim.com',
+                            address:'Av. Paulista, 326',
+                            document: '23.653.876/0001-29')
+
+    contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
                             equipment: 'Betoneira 1 tonelada',
                             rental_period: '5 dias',
@@ -41,6 +60,6 @@ feature 'User view contract details' do
 
     click_on 'Voltar'
 
-    expect(current_path).to eq(contracts_path)                        
+    expect(current_path).to eq(contracts_path)
   end
 end

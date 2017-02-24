@@ -6,5 +6,6 @@ class Customer < ApplicationRecord
   validates :phone_number, presence: true
   validates :email, presence: true
   validates :address, presence: true
-  validates :document, presence: true 
+  validates :document, presence: true
+  has_many :contracts
 end

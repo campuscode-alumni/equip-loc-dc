@@ -10,10 +10,12 @@ class ContractsController < ApplicationController
 
   def new
     @contract = Contract.new
+    @customers = Customer.all
   end
 
   def create
     @contract = Contract.new contract_params
+    @customers = Customer.all
     if @contract.save
       redirect_to @contract
     else
@@ -25,7 +27,7 @@ class ContractsController < ApplicationController
   private
   def contract_params
     params.require(:contract).permit(
-      :customer, :delivery_address, :equipment, :rental_period, :amount, :discount,
+      :customer_id, :delivery_address, :equipment, :rental_period, :amount, :discount,
       :total_amount, :payment_method, :contact
       )
   end

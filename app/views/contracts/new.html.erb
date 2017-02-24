@@ -1,8 +1,8 @@
 <%=flash[:error]%>
 <%= form_for @contract do |f| %>
   <div class="information">
-    <%= f.label :customer, 'Cliente' %>
-    <%= f.text_field :customer %>
+    <%= f.label :customer_id, 'Cliente' %>
+    <%= f.collection_select(:customer_id, @customers, :id, :name) %>
   </div>
   <div class="information">
     <%= f.label :delivery_address, 'Endereço de Entrega' %>
