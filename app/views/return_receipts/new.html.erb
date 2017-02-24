@@ -1,0 +1,14 @@
+<h1>Recibo de Devolução</h1>
+<%= form_for [@contract, @receipt] do |f| %>
+  <div>
+    <%= f.label :employee_contact, 'Funcionário Responsável' %>
+    <%= f.text_field :employee_contact %>
+  </div>
+
+  <div>
+    <%= f.label :document, 'CPF do Funcionário Responsável' %>
+    <%= f.text_field :document %>
+  </div>
+
+  <%= f.submit 'Assinar' %>
+<% end %>

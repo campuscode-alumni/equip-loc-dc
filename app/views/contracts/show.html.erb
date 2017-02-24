@@ -27,6 +27,7 @@
   <dt>Responsável</dt>
   <dd><%= @contract.contact %></dd>
 
-</dl>
 
+</dl>
+<%= link_to "Gerar recibo de devolução", new_contract_return_receipt_path(@contract) %>
 <%= link_to "Voltar", contracts_path %>
