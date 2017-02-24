@@ -2,9 +2,17 @@ require 'rails_helper'
 
 feature  'User issues contract' do
   scenario 'successfully' do
+    category = Category.create(name: 'Furadeiras')
+
+    equipment = Equipment.create(serial_number: 'DAH787D', replacement_value: 50000.00,
+                              name: 'Furadeira ASX45', description: 'Impacto 20mm',
+                              acquisition_date: '05/01/2017', usage_limit: '2 anos',
+                              image: 'http://www.google.com.br', category: category,
+                              manufacturer: 'Bosh', supplier: 'Extra')
+
     contract = Contract.new(customer: 'Rafael',
                             delivery_address: 'Avenida Paulista, 900',
-                            equipment: 'Betoneira 1 tonelada',
+                            equipment: equipment,
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,
@@ -17,7 +25,7 @@ feature  'User issues contract' do
 
     fill_in 'Cliente',                with: contract.customer
     fill_in 'Endereço de Entrega',    with: contract.delivery_address
-    fill_in 'Equipamento',          with: contract.equipment
+    fill_in 'Equipamento',          with: contract.equipment.name
     fill_in 'Prazo de Locação', with: contract.rental_period
     fill_in 'Valor',            with: contract.amount
     fill_in 'Desconto',         with: contract.discount
@@ -31,7 +39,7 @@ feature  'User issues contract' do
 
     expect(page).to have_content "Cliente #{contract.customer}"
     expect(page).to have_content "Endereço de Entrega #{contract.delivery_address}"
-    expect(page).to have_content "Equipamento #{contract.equipment}"
+    expect(page).to have_content "Equipamento #{contract.equipment.name}"
     expect(page).to have_content "Prazo de Locação #{contract.rental_period}"
     expect(page).to have_content "Valor #{contract.amount}"
     expect(page).to have_content "Desconto #{contract.discount}"
