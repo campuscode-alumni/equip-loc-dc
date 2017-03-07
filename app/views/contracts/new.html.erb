@@ -9,8 +9,7 @@
     <%= f.text_field :delivery_address %>
   </div>
   <div class="information">
-    <%= f.label :equipment, 'Equipamento' %>
-    <%= f.text_field :equipment %>
+  <%= collection_check_boxes(:equipment, :equipments_id, Equipment.all, :id, :name) %>
   </div>
   <div class="information">
     <%= f.label :rental_period, 'Prazo de Locação' %>

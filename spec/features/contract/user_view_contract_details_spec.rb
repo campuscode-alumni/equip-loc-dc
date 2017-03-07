@@ -1,6 +1,14 @@
 require 'rails_helper'
 feature 'User view contract details' do
   scenario 'successfully' do
+    category = Category.create(name: 'Betoneira')
+
+    equipment = Equipment.create(serial_number: 'DAH787D', replacement_value: 50000.00,
+                              name: 'Furadeira ASX45', description: 'Impacto 20mm',
+                              acquisition_date: '05/01/2017', usage_limit: '2 anos',
+                              image: 'http://www.google.com.br', category: category,
+                              manufacturer: 'Bosh', supplier: 'Extra')
+
     customer = Customer.create(name:'João Dias',
                             legal_name:'Grupo Votorantim LTDA.',
                             customer_type:'PJ',
@@ -13,7 +21,7 @@ feature 'User view contract details' do
 
     contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
-                            equipment: 'Betoneira 1 tonelada',
+                            equipment: equipment,
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,
@@ -29,7 +37,7 @@ feature 'User view contract details' do
 
     expect(page).to have_css('h2', text: contract.delivery_address)
     expect(page).to have_content contract.customer.name
-    expect(page).to have_content contract.equipment
+    expect(page).to have_content equipment.name
     expect(page).to have_content contract.rental_period
     expect(page).to have_content contract.amount
     expect(page).to have_content contract.discount
@@ -42,6 +50,14 @@ feature 'User view contract details' do
   end
 
   scenario 'and return to contract' do
+    category = Category.create(name: 'Betoneira')
+
+    equipment = Equipment.create(serial_number: 'DAH787D', replacement_value: 50000.00,
+                              name: 'Betoneira 1 tonelada', description: 'Impacto 20mm',
+                              acquisition_date: '05/01/2017', usage_limit: '2 anos',
+                              image: 'http://www.google.com.br', category: category,
+                              manufacturer: 'Bosh', supplier: 'Extra')
+
     customer = Customer.create(name:'João Dias',
                             legal_name:'Grupo Votorantim LTDA.',
                             customer_type:'PJ',
@@ -53,7 +69,7 @@ feature 'User view contract details' do
 
     contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
-                            equipment: 'Betoneira 1 tonelada',
+                            equipment: equipment,
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,

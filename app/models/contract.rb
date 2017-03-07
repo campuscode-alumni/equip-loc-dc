@@ -5,4 +5,6 @@ class Contract < ApplicationRecord
     belongs_to :customer
     has_one :delivery_receipt
 
+    has_many :equipments
+
 end

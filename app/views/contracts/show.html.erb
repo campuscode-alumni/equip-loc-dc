@@ -38,7 +38,7 @@
 <%if @contract.delivery_receipt.present? %>
   <%= link_to "Visualizar Recibo de Entrega", delivery_receipt_path(@contract.delivery_receipt)%>
 <%else %>
-  <%= link_to "Emitir Recibo de Entrega", contract_delivery_receipts_path(@contract), method: :post %>  
+  <%= link_to "Emitir Recibo de Entrega", contract_delivery_receipts_path(@contract), method: :post %>
 <%end%>
 
 <%= link_to "Voltar", contracts_path %>

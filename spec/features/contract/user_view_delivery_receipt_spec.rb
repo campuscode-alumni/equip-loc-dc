@@ -2,6 +2,14 @@ require 'rails_helper'
 
 feature 'User view delivery receipt' do
   scenario 'successfully' do
+    category = Category.create(name: 'Betoneira')
+
+    equipment = Equipment.create(serial_number: 'DAH787D', replacement_value: 50000.00,
+                              name: 'Furadeira ASX45', description: 'Impacto 20mm',
+                              acquisition_date: '05/01/2017', usage_limit: '2 anos',
+                              image: 'http://www.google.com.br', category: category,
+                              manufacturer: 'Bosh', supplier: 'Extra')
+
     customer = Customer.create(name:'João Dias',
                             legal_name:'Grupo Votorantim LTDA.',
                             customer_type:'PJ',
@@ -13,7 +21,7 @@ feature 'User view delivery receipt' do
 
     contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
-                            equipment: 'Betoneira 1 tonelada',
+                            equipment: equipment,
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,
@@ -35,7 +43,7 @@ feature 'User view delivery receipt' do
     expect(page).to have_content "São Paulo, #{contract.delivery_receipt.issue_date.strftime("%d de %B de %Y")}
     Eu, #{contract.contact}
     em nome da empresa #{contract.customer.legal_name}. (razão social), inscrita no CNPJ x
-    declaro ter recebido os equipamentos #{contract.equipment}
+    declaro ter recebido os equipamentos #{equipment.name}
     pelo período de #{contract.rental_period} em perfeitas condições de uso
     no endereço #{contract.delivery_address}.
     de acordo com o contrato #{contract.id}
