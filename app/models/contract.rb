@@ -6,5 +6,4 @@ class Contract < ApplicationRecord
     has_one :delivery_receipt
 
     has_many :equipments
-
 end
