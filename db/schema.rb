@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20170308000604) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "category_id"
+    t.boolean  "rent"
     t.index ["category_id"], name: "index_equipment_on_category_id"
   end
 
@@ -95,6 +96,16 @@ ActiveRecord::Schema.define(version: 20170308000604) do
     t.datetime "updated_at",   null: false
     t.index ["contract_id"], name: "index_rented_equipments_on_contract_id"
     t.index ["equipment_id"], name: "index_rented_equipments_on_equipment_id"
+  end
+
+  create_table "return_receipts", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "contract_id"
+    t.string   "document"
+    t.string   "employee_contact"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["contract_id"], name: "index_return_receipts_on_contract_id"
   end
 
 end

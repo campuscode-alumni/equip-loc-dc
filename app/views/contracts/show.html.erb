@@ -45,4 +45,5 @@
   <%= link_to "Emitir Recibo de Entrega", contract_delivery_receipts_path(@contract), method: :post %>
 <%end%>
 
+<%= link_to "Gerar recibo de devolução", new_contract_return_receipt_path(@contract) %>
 <%= link_to "Voltar", contracts_path %>
