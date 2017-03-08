@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20170307004641) do
-=======
-ActiveRecord::Schema.define(version: 20170224010200) do
->>>>>>> b750a6b8cfa54e682d91015260b8e71544570bc6
+ActiveRecord::Schema.define(version: 20170308000604) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -34,14 +30,8 @@ ActiveRecord::Schema.define(version: 20170224010200) do
     t.datetime "updated_at",       null: false
     t.date     "start_date"
     t.date     "end_date"
-<<<<<<< HEAD
     t.integer  "customer_id"
-    t.integer  "equipment_id"
     t.index ["customer_id"], name: "index_contracts_on_customer_id"
-=======
-    t.integer  "equipment_id"
->>>>>>> b750a6b8cfa54e682d91015260b8e71544570bc6
-    t.index ["equipment_id"], name: "index_contracts_on_equipment_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -96,6 +86,15 @@ ActiveRecord::Schema.define(version: 20170224010200) do
     t.string   "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rented_equipments", force: :cascade do |t|
+    t.integer  "contract_id"
+    t.integer  "equipment_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["contract_id"], name: "index_rented_equipments_on_contract_id"
+    t.index ["equipment_id"], name: "index_rented_equipments_on_equipment_id"
   end
 
 end

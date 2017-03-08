@@ -21,7 +21,6 @@ feature 'User view delivery receipt' do
 
     contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
-                            equipment: equipment,
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,
@@ -31,6 +30,8 @@ feature 'User view delivery receipt' do
                             start_date: 7.days.from_now,
                             end_date: 7.days.from_now,
                             contact: 'Sérgio')
+
+    contract.equipment << equipment
 
     contract.delivery_receipt = DeliveryReceipt.create(issue_date: Time.zone.today)
 

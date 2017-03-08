@@ -6,8 +6,12 @@
   <dt>Endereço de Entrega</dt>
   <dd><h2><%= @contract.delivery_address %></h2></dd>
 
-  <dt>Equipamento</dt>
-  <dd><%= @contract.equipment %></dd>
+  <dt>Equipamentos</dt>
+  <dd>
+    <% @contract.equipment.each do |equipment| %>
+      <%=equipment.name%>
+    <% end %>
+  </dd>
 
   <dt>Prazo de Locação</dt>
   <dd><%= @contract.rental_period %></dd>

@@ -22,7 +22,6 @@ feature 'User view contracts' do
 
     contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
-                            equipment: equipment,
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,
@@ -56,7 +55,6 @@ feature 'User view contracts' do
 
     contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
-                            equipment: equipment,
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,
@@ -66,7 +64,6 @@ feature 'User view contracts' do
 
     another_contract = Contract.create(customer: customer,
                             delivery_address: 'Rua dos Paulistanos, 100',
-                            equipment: 'Furadeira 200 Watts',
                             rental_period: '15 dias',
                             amount: 100.00,
                             total_amount: 200.00,

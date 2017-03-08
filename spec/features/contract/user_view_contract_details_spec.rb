@@ -21,7 +21,6 @@ feature 'User view contract details' do
 
     contract = Contract.create(customer: customer,
                             delivery_address: 'Avenida Paulista, 900',
-                            equipment: equipment,
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,
@@ -30,6 +29,8 @@ feature 'User view contract details' do
                             contact: 'Sérgio',
                             start_date: Time.zone.today,
                             end_date: 5.days.from_now)
+
+    contract.equipment << equipment
 
     visit contracts_path
 
@@ -68,8 +69,7 @@ feature 'User view contract details' do
                             document: '23.653.876/0001-29')
 
     contract = Contract.create(customer: customer,
-                            delivery_address: 'Avenida Paulista, 900',
-                            equipment: equipment,
+                            delivery_address: 'Avenida Paulista, 900',                            
                             rental_period: '5 dias',
                             amount: 800.00,
                             total_amount: 700.00,
