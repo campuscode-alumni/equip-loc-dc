@@ -1,7 +1,7 @@
 <%= "São Paulo, #{@delivery_receipt.issue_date.strftime("%d de %B de %Y")}
 Eu, #{@delivery_receipt.contract.contact}
 em nome da empresa #{@delivery_receipt.contract.customer.legal_name}. (razão social), inscrita no CNPJ x
-declaro ter recebido os equipamentos #{@delivery_receipt.contract.equipment}
+declaro ter recebido os equipamentos #{@delivery_receipt.contract.list}
 pelo período de #{@delivery_receipt.contract.rental_period} em perfeitas condições de uso
 no endereço #{@delivery_receipt.contract.delivery_address}.
 de acordo com o contrato #{@delivery_receipt.contract.id}

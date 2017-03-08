@@ -9,9 +9,9 @@
     <%= f.label :delivery_address, 'Endereço de Entrega' %>
     <%= f.text_field :delivery_address%>
   </div>
+
   <div class="form-group">
-    <%= f.label :equipment, 'Equipamento' %>
-    <%= f.text_field :equipment%>
+    <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) %>
   </div>
   <div class="form-group">
     <%= f.label :rental_period, 'Prazo de Locação' %>

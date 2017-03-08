@@ -3,7 +3,10 @@ require 'rails_helper'
 feature 'User require return receipt' do
   scenario 'successfully' do
 
+    equipment = create(:equipment)
     contract = create(:contract)
+
+    contract.equipment << equipment
 
     receipt = build(:return_receipt, contract: contract)
 
@@ -17,7 +20,7 @@ feature 'User require return receipt' do
     click_on 'Assinar'
 
     expect(page).to have_content "Eu, #{receipt.contract.contact},
-     declaro ter recebido os equipamentos #{receipt.contract.equipment}
+     declaro ter recebido os equipamentos #{equipment.name}
      em devolução referente ao contrato #{receipt.contract.id}
      em perfeitas condições da empresa ................,
      inscrita no CNPJ ........... no dia #{receipt.date}.
