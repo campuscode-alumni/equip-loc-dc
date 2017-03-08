@@ -1,35 +1,55 @@
 <%= notice %>
 <%= form_for @equipment do |f| %>
+<div class="form-group">
   <%= f.label :serial_number, 'Número de Série' %>
   <%= f.text_field :serial_number %>
+</div>
 
+<div class="form-group">
   <%= f.label :replacement_value, 'Valor de Aquisição' %>
   <%= f.text_field :replacement_value %>
+</div>
 
+<div class="form-group">
   <%= f.label :name, 'Nome' %>
   <%= f.text_field :name %>
+</div>
 
+<div class="form-group">
   <%= f.label :description, 'Descrição' %>
   <%= f.text_field :description %>
+</div>
 
+<div class="form-group">
   <%= f.label :acquisition_date, 'Data de Aquisição' %>
   <%= f.text_field :acquisition_date %>
+</div>
 
+<div class="form-group">
   <%= f.label :usage_limit, 'Vida Útil' %>
   <%= f.text_field :usage_limit %>
+</div>
 
+<div class="form-group">
   <%= f.label :image, 'Foto' %>
   <%= f.text_field :image %>
+</div>
 
+<div class="form-group">
   <%= f.label :category_id, 'Tipo de Equipamento' %>
   <%= f.collection_select(:category_id, @categories, :id, :name) %>
+</div>
 
+<div class="form-group">
   <%= f.label :manufacturer, 'Fabricante' %>
   <%= f.text_field :manufacturer %>
+</div>
 
+<div class="form-group">
   <%= f.label :supplier, 'Fornecedor' %>
   <%= f.text_field :supplier %>
+</div>
 
-  <%= f.submit 'Cadastrar Equipamento' %>
+  <%= f.submit 'Cadastrar Equipamento',  class: 'btn btn-primary' %>
 
 <% end %>

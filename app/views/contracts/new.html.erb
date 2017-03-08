@@ -1,54 +1,54 @@
 <%=flash[:error]%>
 <%= form_for @contract do |f| %>
-  <div class="information">
+  <div class="form-group">
     <%= f.label :customer_id, 'Cliente' %>
     <%= f.collection_select(:customer_id, @customers, :id, :name) %>
   </div>
-  <div class="information">
+  <div class="form-group">
     <%= f.label :delivery_address, 'Endereço de Entrega' %>
-    <%= f.text_field :delivery_address %>
+    <%= f.text_field :delivery_address, class: 'form-control' %>
   </div>
-  <div class="information">
+  <div class="form-group">
     <%= f.label :equipment, 'Equipamento' %>
-    <%= f.text_field :equipment %>
+    <%= f.text_field :equipment, class: 'form-control' %>
   </div>
-  <div class="information">
+  <div class="form-group">
     <%= f.label :rental_period, 'Prazo de Locação' %>
-    <%= f.text_field :rental_period %>
+    <%= f.text_field :rental_period, class: 'form-control' %>
   </div>
-  <div class="information">
+  <div class="form-group">
     <%= f.label :amount, 'Valor' %>
-    <%= f.text_field :amount %>
+    <%= f.text_field :amount, class: 'form-control' %>
   </div>
-  <div class="information">
+  <div class="form-group">
     <%= f.label :discount, 'Desconto' %>
-    <%= f.text_field :discount %>
+    <%= f.text_field :discount, class: 'form-control' %>
   </div>
-  <div class="information">
+  <div class="form-group">
     <%= f.label :total_amount, 'Valor Total' %>
-    <%= f.text_field :total_amount %>
+    <%= f.text_field :total_amount, class: 'form-control' %>
   </div>
-  <div class="information">
+  <div class="form-group">
     <%= f.label :payment_method, 'Forma de Pagamento' %>
-    <%= f.text_field :payment_method %>
+    <%= f.text_field :payment_method, class: 'form-control' %>
   </div>
 
-  <div class="information">
+  <div class="form-group">
     <%= f.label :start_date, 'Data de Início' %>
-    <%= f.date_field :start_date %>
+    <%= f.date_field :start_date, class: 'form-control' %>
   </div>
 
-  <div class="information">
+  <div class="form-group">
     <%= f.label :end_date, 'Data de Devolução' %>
-    <%= f.date_field :end_date %>
+    <%= f.date_field :end_date, class: 'form-control' %>
   </div>
 
-  <div class="information">
+  <div class="form-group">
     <%= f.label :contact, 'Responsável' %>
-    <%= f.text_field :contact %>
+    <%= f.text_field :contact, class: 'form-control' %>
   </div>
-  <div class="information">
-    <%= f.submit 'Emitir Contrato' %>
+  <div class="form-group">
+    <%= f.submit 'Emitir Contrato', class: 'btn btn-primary' %>
   </div>
 
 
