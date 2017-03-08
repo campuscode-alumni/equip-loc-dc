@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223235855) do
+ActiveRecord::Schema.define(version: 20170307005742) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20170223235855) do
   end
 
   create_table "contracts", force: :cascade do |t|
-    t.string   "customer"
     t.string   "delivery_address"
     t.string   "equipment"
     t.string   "rental_period"
@@ -30,6 +29,10 @@ ActiveRecord::Schema.define(version: 20170223235855) do
     t.string   "contact"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "customer_id"
+    t.index ["customer_id"], name: "index_contracts_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -45,6 +48,14 @@ ActiveRecord::Schema.define(version: 20170223235855) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "delivery_receipts", force: :cascade do |t|
+    t.integer  "contract_id"
+    t.date     "issue_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["contract_id"], name: "index_delivery_receipts_on_contract_id"
+  end
+
   create_table "equipment", force: :cascade do |t|
     t.string   "serial_number"
     t.decimal  "replacement_value"
@@ -58,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170223235855) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "category_id"
+    t.boolean  "rent"
     t.index ["category_id"], name: "index_equipment_on_category_id"
   end
 
@@ -68,6 +80,14 @@ ActiveRecord::Schema.define(version: 20170223235855) do
     t.datetime "updated_at",    null: false
     t.integer  "category_id"
     t.index ["category_id"], name: "index_prices_on_category_id"
+  end
+
+  create_table "proposals", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "return_receipts", force: :cascade do |t|
