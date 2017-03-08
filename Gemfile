@@ -23,6 +23,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
   gem 'simplecov', require: false
+  gem 'factory_girl_rails'
 end
 
 group :development do

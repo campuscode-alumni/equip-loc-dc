@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 20170307005742) do
     t.string   "contact"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "customer_id"
     t.date     "start_date"
     t.date     "end_date"
+    t.integer  "customer_id"
     t.index ["customer_id"], name: "index_contracts_on_customer_id"
   end
 
@@ -88,6 +88,16 @@ ActiveRecord::Schema.define(version: 20170307005742) do
     t.string   "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "return_receipts", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "contract_id"
+    t.string   "document"
+    t.string   "employee_contact"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["contract_id"], name: "index_return_receipts_on_contract_id"
   end
 
 end
