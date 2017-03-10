@@ -40,4 +40,29 @@ feature 'User require return receipt' do
 
     expect(page).to have_content 'Não foi possível gerar o recibo de devolução'
   end
+
+  scenario 'Second way of receipt' do
+    equipment = create(:equipment)
+    contract = create(:contract)
+
+    contract.equipment << equipment
+
+    receipt = create(:return_receipt, contract: contract)
+
+    visit contract_path(contract)
+
+    click_on 'Reimpressão de Recibo de Devolução'
+
+    expect(page).to have_content "Eu, #{receipt.contract.contact},
+     declaro ter recebido os equipamentos #{equipment.name}
+     em devolução referente ao contrato #{receipt.contract.id}
+     em perfeitas condições da empresa ................,
+     inscrita no CNPJ ........... no dia #{receipt.date}.
+     Assinatura do Funcionário: #{receipt.employee_contact} - #{receipt.document}"
+
+  end
+
+  scenario 'generate return receipt if delivery receipt exists' do
+    
+  end
 end
