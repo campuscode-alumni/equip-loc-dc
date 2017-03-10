@@ -12,8 +12,8 @@
     <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) %>
   </div>
   <div class="form-group">
-    <%= f.label :rental_period, 'Prazo de Locação' %>
-    <%= f.text_field :rental_period, class: 'form-control' %>
+    <%= f.label :prices_id, 'Prazo de Locação' %>
+    <%= f.collection_select(:prices_id, @prices, :id, :rental_period) %>
   </div>
   <div class="form-group">
     <%= f.label :amount, 'Valor' %>
