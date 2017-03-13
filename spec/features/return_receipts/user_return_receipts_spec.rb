@@ -7,6 +7,7 @@ feature 'User require return receipt' do
     contract = create(:contract)
 
     contract.equipment << equipment
+    contract.delivery_receipt = DeliveryReceipt.create(issue_date: Time.zone.today)
 
     receipt = build(:return_receipt, contract: contract)
 
@@ -32,6 +33,8 @@ feature 'User require return receipt' do
 
     contract = create(:contract)
 
+    contract.delivery_receipt = DeliveryReceipt.create(issue_date: Time.zone.today)
+
     visit contract_path(contract)
 
     click_on 'Gerar recibo de devolução'
@@ -41,11 +44,24 @@ feature 'User require return receipt' do
     expect(page).to have_content 'Não foi possível gerar o recibo de devolução'
   end
 
+  scenario 'Without delivery receipt' do
+    equipment = create(:equipment)
+    contract = create(:contract)
+
+    contract.equipment << equipment
+
+    visit contract_path(contract)
+
+    expect(page).not_to have_content 'Gerar recibo de devolução'
+  end
+
   scenario 'Second way of receipt' do
     equipment = create(:equipment)
     contract = create(:contract)
 
     contract.equipment << equipment
+
+    contract.delivery_receipt = DeliveryReceipt.create(issue_date: Time.zone.today)
 
     receipt = create(:return_receipt, contract: contract)
 
@@ -60,9 +76,5 @@ feature 'User require return receipt' do
      inscrita no CNPJ ........... no dia #{receipt.date}.
      Assinatura do Funcionário: #{receipt.employee_contact} - #{receipt.document}"
 
-  end
-
-  scenario 'generate return receipt if delivery receipt exists' do
-    
   end
 end
