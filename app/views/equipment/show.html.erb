@@ -1,10 +1,12 @@
-<%= @equipment.serial_number %>
-<%= @equipment.replacement_value %>
-<%= @equipment.name %>
-<%= @equipment.description %>
-<%= @equipment.acquisition_date %>
-<%= @equipment.usage_limit %>
-<%= @equipment.image %>
-<%= @equipment.category.name %>
-<%= @equipment.manufacturer %>
-<%= @equipment.supplier %>
+<h1><%= @equipment.name %></h1>
+<hr>
+<dl>
+  <dt> Numero de Série</dt><dd><%= @equipment.serial_number %></dd>
+  <dt> Valor de Reposição</dt><dd><%= @equipment.replacement_value %></dd>
+  <dt> Descrição</dt><dd><%= @equipment.description %></dd>
+  <dt> Data de Aquisição</dt><dd><%= @equipment.acquisition_date %></dd>
+  <dt> Vida Util</dt><dd><%= @equipment.usage_limit %></dd>
+  <dt> Foto</dt><dd><%= @equipment.image %></dd>
+  <dt> Categoria</dt><dd><%= @equipment.category.name %></dd>
+  <dt> Fabricante</dt><dd><%= @equipment.manufacturer %></dd>
+  <dt> Fornecedor</dt><dd><%= @equipment.supplier %></dd>

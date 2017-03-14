@@ -1,8 +1,13 @@
 class Contract < ApplicationRecord
+
   validates :customer, :delivery_address, :amount,
             :total_amount, :payment_method, :contact, presence: true
 
   before_validation :calculate_total_value
+
+  before_save :set_end_date
+
+  has_one :return_receipt
 
   belongs_to :customer
   has_one :delivery_receipt
@@ -28,4 +33,8 @@ class Contract < ApplicationRecord
     end
     equipment_list.join(", ")
   end
+
+    def set_end_date
+      self.end_date = start_date + rental_period.to_i.days
+    end
 end

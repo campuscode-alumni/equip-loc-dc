@@ -1,14 +1,8 @@
 require "rails_helper"
 feature "User creates customer" do
   scenario 'successfully' do
-    customer = Customer.new(name:'João Dias',
-                            legal_name:'Grupo Votorantim LTDA.',
-                            customer_type:'PJ',
-                            contact_name:'José Batista',
-                            phone_number:'(011)6573-3030',
-                            email:'contato@grupovotorantim.com',
-                            address:'Av. Paulista, 326',
-                            document: '23.653.876/0001-29')
+
+    customer = build(:customer)
 
   visit new_customer_path
 
@@ -34,14 +28,8 @@ feature "User creates customer" do
   end
 
   scenario 'and mark as featured' do
-    customer = Customer.create(name:'João Dias',
-                            legal_name:'Grupo Votorantim LTDA.',
-                            customer_type:'PJ',
-                            contact_name:'José Batista',
-                            phone_number:'(011)6573-3030',
-                            email:'contato@grupovotorantim.com',
-                            address:'Av. Paulista, 326',
-                            document: '23.653.876/0001-29')
+
+    customer = create(:customer)
 
     visit new_customer_path
 

@@ -6,5 +6,6 @@ FactoryGirl.define do
     payment_method 'a prazo'
     contact "Fabio"
     rental_period 10
+    start_date '2017-02-22'
   end
 end

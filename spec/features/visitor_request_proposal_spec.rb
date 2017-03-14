@@ -8,7 +8,7 @@ feature 'Visitor request proposal' do
 
     visit root_path
 
-    click_on 'Novo Orçamento'
+    click_on 'Solicitar orçamento'
 
     fill_in 'Nome', with: 'Alan Batista'
     fill_in 'Email', with: 'alan@gmail.com'

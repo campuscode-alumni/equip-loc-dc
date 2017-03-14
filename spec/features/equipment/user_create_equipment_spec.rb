@@ -3,13 +3,9 @@ require 'rails_helper'
 feature 'User create equipment' do
   scenario 'successfully' do
 
-    category = Category.create(name: 'Betoneira')
+    category = create(:category)
 
-    equipment = Equipment.new(serial_number: 'DAH787D', replacement_value: 50000.00,
-                              name: 'Furadeira ASX45', description: 'Impacto 20mm',
-                              acquisition_date: '05/01/2017', usage_limit: '2 anos',
-                              image: 'http://www.google.com.br', category: category,
-                              manufacturer: 'Bosh', supplier: 'Extra')
+    equipment = create(:equipment, category: category)
 
     visit new_equipment_path
 
