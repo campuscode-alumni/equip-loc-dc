@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   resources :contracts, only:[:new, :create, :show, :index] do
+    member do
+      put 'finish'
+    end
     resources :return_receipts, only: [:new, :create]
     resources :delivery_receipts, only:[:create]
   end

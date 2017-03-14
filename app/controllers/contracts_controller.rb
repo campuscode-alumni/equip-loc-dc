@@ -24,6 +24,14 @@ class ContractsController < ApplicationController
     end
   end
 
+  def finish
+    @contract = Contract.find(params[:id])
+
+    flash[:notice] = "Contrato Encerrado."
+    redirect_to root_path
+  end
+
+
   private
   def contract_params
     params.require(:contract).permit(
