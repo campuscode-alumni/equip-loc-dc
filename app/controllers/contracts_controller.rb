@@ -12,14 +12,18 @@ class ContractsController < ApplicationController
     @contract = Contract.new
     @customers = Customer.all
     @prices = Price.all
+    @equipment = Equipment.all
   end
 
   def create
     @contract = Contract.new contract_params
-    @customers = Customer.all
+
     if @contract.save
       redirect_to @contract
     else
+      @customers = Customer.all
+      @equipment = Equipment.all
+      @prices = Price.all
       flash[:error] = "Não foi possível emitir contrato."
       render :new
     end
@@ -28,7 +32,7 @@ class ContractsController < ApplicationController
   private
   def contract_params
     params.require(:contract).permit(
-      :customer_id, :delivery_address, :rental_period_id, :amount, :discount,
+      :customer_id, :delivery_address, :rental_period, :amount, :discount,
       :total_amount, :payment_method, :contact, :start_date, :end_date, equipment_ids: [])
   end
 end

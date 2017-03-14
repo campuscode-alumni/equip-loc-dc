@@ -3,8 +3,7 @@ require 'rails_helper'
 feature  'User issues contract' do
   scenario 'successfully' do
     category = create(:category)
-
-    price = create(:price, category: category, value: 500)
+    price = create(:price, category: category, value: 500, rental_period: 10)
 
     equipment = create(:equipment, category: category)
 
@@ -20,7 +19,7 @@ feature  'User issues contract' do
 
     check(equipment.name)
 
-    select price.rental_period
+    select 10, from: 'Prazo de Locação'
 
     fill_in 'Endereço de Entrega', with: contract.delivery_address
     fill_in 'Desconto',         with: contract.discount
@@ -33,7 +32,7 @@ feature  'User issues contract' do
 
     expect(page).to have_content "Cliente #{contract.customer.name}"
     expect(page).to have_content "Endereço de Entrega #{contract.delivery_address}"
-    expect(page).to have_content "Equipamentos #{equipment.name} #{equipment2.name}"
+    expect(page).to have_content "Equipamentos #{equipment.name}"
     expect(page).to have_content "Prazo de Locação #{contract.rental_period}"
     expect(page).to have_content "Valor #{contract.amount}"
     expect(page).to have_content "Desconto #{contract.discount}"

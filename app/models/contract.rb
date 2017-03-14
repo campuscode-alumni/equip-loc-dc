@@ -1,12 +1,11 @@
 class Contract < ApplicationRecord
-  validates :customer, :delivery_address, :rental_period, :amount,
+  validates :customer, :delivery_address, :amount,
             :total_amount, :payment_method, :contact, presence: true
 
-  before_save :calculate_total_value
+  before_validation :calculate_total_value
 
   belongs_to :customer
   has_one :delivery_receipt
-  belongs_to :rental_period
 
   has_many :rented_equipments
   has_many :equipment, through: :rented_equipments
@@ -14,9 +13,12 @@ class Contract < ApplicationRecord
   def calculate_total_value
     self.amount = 0
     equipment.each do |equipment|
-      price = equipment.category.price.where(rental_period: rental_period)
+      price = equipment.category.prices.find_by(rental_period: self.rental_period)
+      self.amount += price.value
     end
-
+    if amount  > 0
+      self.total_amount = amount - discount
+    end
   end
 
   def list

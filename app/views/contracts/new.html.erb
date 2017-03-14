@@ -9,24 +9,18 @@
     <%= f.text_field :delivery_address, class: 'form-control' %>
   </div>
   <div class="information">
-    <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) %>
+    <%= f.collection_check_boxes(:equipment_ids, @equipment, :id, :name) %>
   </div>
   <div class="form-group">
-    <%= f.label :prices_id, 'Prazo de Locação' %>
-    <%= f.collection_select(:prices_id, @prices, :id, :rental_period) %>
+    <%= f.label :rental_period, 'Prazo de Locação' %>
+    <%= f.select(:rental_period, options_for_select([['5 dias', 5], ['10 dias', 10], ['15 dias', 15], ['20 dias', 20], ['25 dias', 25], ['30 dias', 30]]))%>
   </div>
-  <div class="form-group">
-    <%= f.label :amount, 'Valor' %>
-    <%= f.text_field :amount, class: 'form-control' %>
-  </div>
+
   <div class="form-group">
     <%= f.label :discount, 'Desconto' %>
     <%= f.text_field :discount, class: 'form-control' %>
   </div>
-  <div class="form-group">
-    <%= f.label :total_amount, 'Valor Total' %>
-    <%= f.text_field :total_amount, class: 'form-control' %>
-  </div>
+
   <div class="form-group">
     <%= f.label :payment_method, 'Forma de Pagamento' %>
     <%= f.text_field :payment_method, class: 'form-control' %>
