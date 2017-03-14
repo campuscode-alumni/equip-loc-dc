@@ -8,5 +8,7 @@ FactoryGirl.define do
     discount 500.00
     payment_method 'a prazo'
     contact "Fabio"
+    start_date '2017-02-22'
+
   end
 end
