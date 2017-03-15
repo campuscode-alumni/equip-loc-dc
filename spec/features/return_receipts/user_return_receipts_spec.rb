@@ -4,7 +4,7 @@ feature 'User require return receipt' do
   scenario 'successfully' do
 
     equipment = create(:equipment)
-    contract = create(:contract)
+    contract = create(:contract, amount: 500, total_amount: 500)
 
     contract.equipment << equipment
     contract.delivery_receipt = DeliveryReceipt.create(issue_date: Time.zone.today)
@@ -31,7 +31,7 @@ feature 'User require return receipt' do
 
   scenario 'with invalid data' do
 
-    contract = create(:contract)
+    contract = create(:contract, amount:500, total_amount: 500)
 
     contract.delivery_receipt = DeliveryReceipt.create(issue_date: Time.zone.today)
 
@@ -46,7 +46,7 @@ feature 'User require return receipt' do
 
   scenario 'Without delivery receipt' do
     equipment = create(:equipment)
-    contract = create(:contract)
+    contract = create(:contract, amount:500, total_amount: 500)
 
     contract.equipment << equipment
 
@@ -57,7 +57,7 @@ feature 'User require return receipt' do
 
   scenario 'Second way of receipt' do
     equipment = create(:equipment)
-    contract = create(:contract)
+    contract = create(:contract, amount:500, total_amount: 500)
 
     contract.equipment << equipment
 

@@ -4,28 +4,26 @@ feature  'User issues contract' do
   scenario 'successfully' do
     category = create(:category)
 
-    equipment = create(:equipment)
+    price = create(:price, category: category, value: 500, rental_period: 10)
+
+    equipment = create(:equipment, category: category)
 
     customer = create(:customer)
 
-    equipment2 = create(:equipment, serial_number: 'DAH787D', replacement_value: 50000.00,
-                                name: 'Betoneira', description: 'Impacto 20mm',
-                                acquisition_date: '05/01/2017', usage_limit: '2 anos',
-                                image: 'http://www.google.com.br', category: category,
-                                manufacturer: 'Bosh', supplier: 'Extra')
+    contract = build(:contract, customer: customer, amount: 500, total_amount: 500)
 
-    contract = build(:contract, customer: customer)
+    contract.equipment << equipment
 
     visit new_contract_path
 
     select customer.name, from: 'Cliente'
+
     check(equipment.name)
-    check(equipment2.name)
-    fill_in 'Prazo de Locação', with: contract.rental_period
-    fill_in 'Valor',            with: contract.amount
+
+    select 10, from: 'Prazo de Locação'
+
     fill_in 'Endereço de Entrega', with: contract.delivery_address
     fill_in 'Desconto',         with: contract.discount
-    fill_in 'Valor Total',      with: contract.total_amount
     fill_in 'Forma de Pagamento', with: contract.payment_method
     fill_in 'Responsável',        with: contract.contact
     fill_in 'Data de Início',   with: contract.start_date
@@ -34,7 +32,7 @@ feature  'User issues contract' do
 
     expect(page).to have_content "Cliente #{contract.customer.name}"
     expect(page).to have_content "Endereço de Entrega #{contract.delivery_address}"
-    expect(page).to have_content "Equipamentos #{equipment.name} #{equipment2.name}"
+    expect(page).to have_content "Equipamentos #{equipment.name}"
     expect(page).to have_content "Prazo de Locação #{contract.rental_period}"
     expect(page).to have_content "Valor #{contract.amount}"
     expect(page).to have_content "Desconto #{contract.discount}"

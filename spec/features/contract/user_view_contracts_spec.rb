@@ -9,7 +9,7 @@ feature 'User view contracts' do
 
     customer = create(:customer)
 
-    contract = create(:contract)
+    contract = create(:contract, amount: 500, total_amount: 1200)
 
     visit contracts_path
 
@@ -25,17 +25,9 @@ feature 'User view contracts' do
 
     customer = create(:customer)
 
-    contract = create(:contract)
+    contract = create(:contract, amount: 500, total_amount: 1200)
 
-    another_contract = Contract.create(customer: customer,
-                            delivery_address: 'Rua dos Paulistanos, 100',
-                            rental_period: '15 dias',
-                            amount: 100.00,
-                            total_amount: 200.00,
-                            discount: 50.00,
-                            payment_method: 'à vista',
-                            contact: 'Ronaldo',
-                            start_date: '2017-02-22')
+    another_contract = create(:contract, amount: 600, total_amount: 1500)
 
 
     visit contracts_path

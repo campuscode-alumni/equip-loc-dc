@@ -7,7 +7,7 @@ feature 'User view contract details' do
 
     customer = create(:customer)
 
-    contract = create(:contract)
+    contract = create(:contract, amount: 500, total_amount: 1200)
 
     contract.equipment << equipment
 
@@ -36,7 +36,7 @@ feature 'User view contract details' do
 
     customer = create(:customer)
 
-    contract = create(:contract)
+    contract = create(:contract, amount: 500, total_amount: 1200)
 
     visit contract_path(contract)
 

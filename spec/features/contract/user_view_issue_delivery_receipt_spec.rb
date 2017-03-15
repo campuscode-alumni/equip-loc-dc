@@ -8,7 +8,7 @@ feature 'User issues delivery receipt' do
 
     customer = create(:customer)
 
-    contract = create(:contract)
+    contract = create(:contract, amount: 500, total_amount: 500)
 
 
     contract.equipment << equipment
