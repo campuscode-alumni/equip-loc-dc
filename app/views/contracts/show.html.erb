@@ -1,58 +1,65 @@
 
 <dl>
+  <%if @contract.finished?%>
+    <%=flash[:notice] = "Contrato Encerrado em #{@contract.end_date}" %>
+  <%else%>
 
-  <dt>Cliente</dt>
-  <dd><%= @contract.customer.name %></dd>
 
-  <dt>Endereço de Entrega</dt>
-  <dd><h2><%= @contract.delivery_address %></h2></dd>
 
-  <dt>Equipamentos</dt>
-  <dd>
-    <% @contract.equipment.each do |equipment| %>
-      <%=equipment.name%>
+      <dt>Cliente</dt>
+      <dd><%= @contract.customer.name %></dd>
+
+      <dt>Endereço de Entrega</dt>
+      <dd><h2><%= @contract.delivery_address %></h2></dd>
+
+      <dt>Equipamentos</dt>
+      <dd>
+        <% @contract.equipment.each do |equipment| %>
+          <%=equipment.name%>
+        <% end %>
+      </dd>
+
+      <dt>Prazo de Locação</dt>
+      <dd><%= @contract.rental_period %></dd>
+
+      <dt>Valor</dt>
+      <dd><%= @contract.amount %></dd>
+
+      <dt>Desconto</dt>
+      <dd><%= @contract.discount%></dd>
+
+      <dt>Valor Total</dt>
+      <dd><%= @contract.total_amount %></dd>
+
+      <dt>Forma de Pagamento</dt>
+      <dd><%= @contract.payment_method%></dd>
+
+      <dt>Data de Início</dt>
+      <dd><%= @contract.start_date %></dd>
+
+      <dt>Data de Devolução</dt>
+      <dd><%= @contract.end_date %></dd>
+
+      <dt>Responsável</dt>
+      <dd><%= @contract.contact %></dd>
+
+    </dl>
+
+
+    <% if @contract.delivery_receipt.present? %>
+      <%= link_to "Visualizar Recibo de Entrega", delivery_receipt_path(@contract.delivery_receipt)%>
+    <% else %>
+      <%= link_to "Emitir Recibo de Entrega", contract_delivery_receipts_path(@contract), method: :post %>
+
     <% end %>
-  </dd>
+<%end%>
+    <% if @contract.return_receipt.present?%>
+      <%= link_to "Reimpressão de Recibo de Devolução", return_receipt_path(@contract.return_receipt)%>
+    <% else %>
+      <%= link_to "Gerar recibo de devolução", new_contract_return_receipt_path(@contract) %>
+    <% end %>
 
-  <dt>Prazo de Locação</dt>
-  <dd><%= @contract.rental_period %></dd>
+    <%= link_to  "Encerrar Contrato", finish_contract_path(@contract), method: :put %>
 
-  <dt>Valor</dt>
-  <dd><%= @contract.amount %></dd>
-
-  <dt>Desconto</dt>
-  <dd><%= @contract.discount%></dd>
-
-  <dt>Valor Total</dt>
-  <dd><%= @contract.total_amount %></dd>
-
-  <dt>Forma de Pagamento</dt>
-  <dd><%= @contract.payment_method%></dd>
-
-  <dt>Data de Início</dt>
-  <dd><%= @contract.start_date %></dd>
-
-  <dt>Data de Devolução</dt>
-  <dd><%= @contract.end_date %></dd>
-
-  <dt>Responsável</dt>
-  <dd><%= @contract.contact %></dd>
-
-</dl>
-
-<% if @contract.delivery_receipt.present? %>
-  <%= link_to "Visualizar Recibo de Entrega", delivery_receipt_path(@contract.delivery_receipt)%>
-<% else %>
-  <%= link_to "Emitir Recibo de Entrega", contract_delivery_receipts_path(@contract), method: :post %>
-
-<% end %>
-
-<% if @contract.return_receipt.present?%>
-  <%= link_to "Reimpressão de Recibo de Devolução", return_receipt_path(@contract.return_receipt)%>
-<% else %>
-  <%= link_to "Gerar recibo de devolução", new_contract_return_receipt_path(@contract) %>
-<% end %>
-
-<%= link_to  "Encerrar Contrato", finish_contract_path(@contract), method: :put %>
 
 <%= link_to "Voltar", contracts_path %>

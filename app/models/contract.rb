@@ -9,6 +9,7 @@ class Contract < ApplicationRecord
     has_many :rented_equipments
     has_many :equipment, through: :rented_equipments
 
+    enum status: [ :active , :finished ]
 
     def list
       equipment_list = []
@@ -17,4 +18,6 @@ class Contract < ApplicationRecord
       end
       equipment_list.join(", ")
     end
+
+    
 end

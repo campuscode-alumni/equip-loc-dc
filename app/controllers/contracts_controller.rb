@@ -6,6 +6,7 @@ class ContractsController < ApplicationController
 
   def show
     @contract = Contract.find(params[:id])
+
   end
 
   def new
@@ -26,7 +27,7 @@ class ContractsController < ApplicationController
 
   def finish
     @contract = Contract.find(params[:id])
-
+    @contract.finished!
     flash[:notice] = "Contrato Encerrado."
     redirect_to root_path
   end
@@ -36,6 +37,6 @@ class ContractsController < ApplicationController
   def contract_params
     params.require(:contract).permit(
       :customer_id, :delivery_address, :rental_period, :amount, :discount,
-      :total_amount, :payment_method, :contact, :start_date, :end_date, equipment_ids: [])
+      :total_amount, :payment_method, :contact, :start_date, :end_date, :status, equipment_ids: [])
   end
 end

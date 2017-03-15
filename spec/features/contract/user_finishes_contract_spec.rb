@@ -15,7 +15,7 @@ feature 'User finish active contract' do
     end
 
     visit contract_path(contract)
-    expect(page).to have_content 'Contrato Encerrado em: 01/01/2017'
+    expect(page).to have_content 'Contrato Encerrado em 2017-01-01'
 
   end
 
