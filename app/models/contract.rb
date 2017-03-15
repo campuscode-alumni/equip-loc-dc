@@ -3,6 +3,8 @@ class Contract < ApplicationRecord
   validates :customer, :delivery_address, :amount,
             :total_amount, :payment_method, :contact, presence: true
 
+  validates :total_amount, numericality: {greater_than_or_equal_to: 0}
+
   before_validation :calculate_total_value
 
   before_save :set_end_date
