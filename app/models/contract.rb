@@ -20,8 +20,8 @@ class Contract < ApplicationRecord
   def calculate_total_value
     self.amount = 0
     equipment.each do |equipment|
-      price = equipment.category.prices.find_by(rental_period: self.rental_period)
-      self.amount += price.value
+      price = equipment.category.prices.where(rental_period: self.rental_period)
+      self.amount += price.last.value
     end
     if amount  > 0
       self.total_amount = amount - discount
