@@ -3,12 +3,13 @@ require 'rails_helper'
 feature 'User view contracts to expire' do
 
   scenario 'successfully' do
+    category = create(:category)
 
     equipment = create(:equipment)
 
     customer = create(:customer, name: 'Maria')
 
-    contract = create(:contract, customer: customer, start_date: Date.today, rental_period: '2 dias' )
+    contract = create(:contract, customer: customer, start_date: Date.today, rental_period: '2 dias', amount: 500, total_amount: 1200 )
 
     contract.equipment << equipment
 
@@ -19,7 +20,7 @@ feature 'User view contracts to expire' do
 
     other_customer = create(:customer, name: 'José')
 
-    another_contract = create(:contract, customer: other_customer, start_date: Date.today, rental_period: '5 dias', delivery_address: 'Rua Pamplona, 04' )
+    another_contract = create(:contract, customer: other_customer, start_date: Date.today, rental_period: '5 dias', delivery_address: 'Rua Pamplona, 04', amount: 500, total_amount: 1200 )
 
     another_contract.equipment << another_equipment
     another_contract.equipment << another_equipment_2
