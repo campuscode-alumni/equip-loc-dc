@@ -2,10 +2,8 @@ class PricesController < ApplicationController
 
   def new
     category = params[:category_id].to_i
-    byebug
     @price = Price.new(category_id: category)
     @categories = Category.all
-
   end
 
   def create

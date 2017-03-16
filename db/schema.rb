@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20170313232917) do
     t.datetime "updated_at",       null: false
     t.date     "start_date"
     t.date     "end_date"
+    t.integer  "equipment_id"
     t.integer  "customer_id"
     t.integer  "rental_period"
     t.index ["customer_id"], name: "index_contracts_on_customer_id"
+    t.index ["equipment_id"], name: "index_contracts_on_equipment_id"
   end
 
   create_table "customers", force: :cascade do |t|
