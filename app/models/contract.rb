@@ -23,7 +23,7 @@ class Contract < ApplicationRecord
       price = equipment.category.prices.where(rental_period: self.rental_period)
       self.amount += price.last.value
     end
-    
+
     if amount  > 0
       self.total_amount = amount - discount.to_i
     end
