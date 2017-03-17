@@ -12,14 +12,19 @@ class ContractsController < ApplicationController
   def new
     @contract = Contract.new
     @customers = Customer.all
+    @prices = Price.all
+    @equipment = Equipment.all
   end
 
   def create
     @contract = Contract.new contract_params
-    @customers = Customer.all
+
     if @contract.save
       redirect_to @contract
     else
+      @customers = Customer.all
+      @equipment = Equipment.all
+      @prices = Price.all
       flash[:error] = "Não foi possível emitir contrato."
       render :new
     end
@@ -28,6 +33,7 @@ class ContractsController < ApplicationController
   def finish
     @contract = Contract.find(params[:id])
     @contract.finished!
+    @contract.update(due_date: Date.today)
     flash[:notice] = "Contrato Encerrado."
     redirect_to root_path
   end

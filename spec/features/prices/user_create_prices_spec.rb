@@ -3,9 +3,9 @@ require 'rails_helper'
 feature 'User create prices' do
   scenario 'successfully' do
 
-    category = Category.create(name: 'Caminhão')
+    category = create(:category)
 
-    price = Price.new(rental_period: 3, category: category, value: 2000.00)
+    price = build(:price, category: category)
 
     visit new_price_path
 

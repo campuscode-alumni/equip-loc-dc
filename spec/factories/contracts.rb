@@ -3,12 +3,11 @@ FactoryGirl.define do
     customer
     delivery_address "Avenida Paulista, 900"
     rental_period "10 dias"
-    end_date "01/01/2017"
-    amount 3000.00
-    total_amount 1000.00
     discount 500.00
+    total_amount 1000.00
     payment_method 'a prazo'
     contact "Fabio"
     status 0
+    start_date '2017-02-22'
   end
 end
