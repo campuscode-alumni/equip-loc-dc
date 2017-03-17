@@ -17,22 +17,22 @@
   <dd><%= @contract.rental_period %></dd>
 
   <dt>Valor</dt>
-  <dd><%= @contract.amount %></dd>
+  <dd><%= number_to_currency @contract.amount %></dd>
 
   <dt>Desconto</dt>
-  <dd><%= @contract.discount%></dd>
+  <dd><%= number_to_currency @contract.discount%></dd>
 
   <dt>Valor Total</dt>
-  <dd><%= @contract.total_amount %></dd>
+  <dd><%= number_to_currency @contract.total_amount %></dd>
 
   <dt>Forma de Pagamento</dt>
   <dd><%= @contract.payment_method%></dd>
 
   <dt>Data de Início</dt>
-  <dd><%= @contract.start_date %></dd>
+  <dd><%= l @contract.start_date %></dd>
 
   <dt>Data de Devolução</dt>
-  <dd><%= @contract.end_date %></dd>
+  <dd><%= l @contract.end_date %></dd>
 
   <dt>Responsável</dt>
   <dd><%= @contract.contact %></dd>
