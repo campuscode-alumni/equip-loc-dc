@@ -5,7 +5,7 @@ class Contract < ApplicationRecord
 
   validates :total_amount, :discount, numericality: {greater_than_or_equal_to: 0}
 
-  after_validation :calculate_total_value
+  before_validation :calculate_total_value
 
   before_save :set_end_date
 
@@ -37,7 +37,7 @@ class Contract < ApplicationRecord
     equipment_list.join(", ")
   end
 
-    def set_end_date
-      self.end_date = start_date + rental_period.to_i.days
-    end
+  def set_end_date
+    self.end_date = start_date + rental_period.to_i.days
+  end
 end

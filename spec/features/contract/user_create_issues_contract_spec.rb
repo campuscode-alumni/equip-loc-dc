@@ -10,7 +10,7 @@ feature  'User issues contract' do
 
     customer = create(:customer)
 
-    contract = build(:contract, customer: customer, amount: 500, total_amount: 500)
+    contract = build(:contract, customer: customer, discount: 0)
 
     contract.equipment << equipment
 
