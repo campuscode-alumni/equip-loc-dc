@@ -3,10 +3,21 @@
 <title>Rafael Equipamentos</title>
 <h1>Bem Vindo</h1>
 <h2>Contratos</h2>
-<div class="col-sm-6 contracts-to-expire">
+<div class="row col-sm-6 contracts-to-expire">
   <h3>Contratos por vencer</h3>
   <dl class="">
     <% @contracts.each do |contract| %>
+      <dd><%= contract.customer.name %></dd>
+      <dd><%= contract.delivery_address %></dd>
+      <dd><%= contract.equipment.count %></dd>
+    <% end %>
+  </dl>
+</div>
+
+<div class="row col-sm-6 contracts-for-today">
+  <h3>Iniciam hoje</h3>
+  <dl class="">
+    <% @contracts_start.each do |contract| %>
       <dd><%= contract.customer.name %></dd>
       <dd><%= contract.delivery_address %></dd>
       <dd><%= contract.equipment.count %></dd>

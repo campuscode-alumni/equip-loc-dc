@@ -1,7 +1,8 @@
 class PricesController < ApplicationController
 
   def new
-    @price = Price.new
+    category = params[:category_id].to_i
+    @price = Price.new(category_id: category)
     @categories = Category.all
   end
 

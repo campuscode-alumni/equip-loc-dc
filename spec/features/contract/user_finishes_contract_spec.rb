@@ -4,10 +4,11 @@ require 'rails_helper'
 feature 'User finish active contract' do
 
   scenario 'successfully' do
-    equipment = create(:equipment)
+    category = create(:category)
+    equipment = create(:equipment, category: category)
     customer = create(:customer)
-    price = create(:price, value: 1000, rental_period: 10)
-    contract = create(:contract, equipment: [equipment], customer: customer,  discount: 0)
+    price = create(:price, value: 1000, rental_period: 10, category: category)
+    contract = create(:contract, equipment: [equipment], customer: customer,  discount: 0, rental_period: price.rental_period)
 
     travel_to Date.parse('2017-01-01') do
       visit contract_path(contract)
@@ -22,9 +23,11 @@ feature 'User finish active contract' do
 
 
   scenario 'and return to root path' do
-    equipment = create(:equipment)
+    category = create(:category)
+    equipment = create(:equipment, category: category)
     customer = create(:customer)
-    contract = create(:contract, equipment: [equipment], customer: customer,  discount: 0)
+    price = create(:price, value: 1000, rental_period: 10, category: category)
+    contract = create(:contract, equipment: [equipment], customer: customer,  discount: 0, rental_period: price.rental_period)
 
     visit contract_path(contract)
 

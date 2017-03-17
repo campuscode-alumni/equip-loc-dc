@@ -4,7 +4,6 @@ FactoryGirl.define do
     delivery_address "Avenida Paulista, 900"
     rental_period "10 dias"
     discount 500.00
-    total_amount 1000.00
     payment_method 'a prazo'
     contact "Fabio"
     status 0

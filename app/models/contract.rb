@@ -3,7 +3,7 @@ class Contract < ApplicationRecord
   validates :customer, :delivery_address, :amount,
             :total_amount, :payment_method, :contact, presence: true
 
-  validates :total_amount, numericality: {greater_than_or_equal_to: 0}
+  validates :total_amount, :discount, numericality: {greater_than_or_equal_to: 0}
 
 
   enum status: [ :active , :finished ]
@@ -24,11 +24,12 @@ class Contract < ApplicationRecord
   def calculate_total_value
     self.amount = 0
     equipment.each do |equipment|
-      price = equipment.category.prices.find_by(rental_period: self.rental_period)
-      self.amount += price.value if price
+      price = equipment.category.prices.where(rental_period: self.rental_period)
+      self.amount += price.last.value
     end
+
     if amount  > 0
-      self.total_amount = amount - discount
+      self.total_amount = amount - discount.to_i
     end
   end
 
@@ -40,9 +41,8 @@ class Contract < ApplicationRecord
     equipment_list.join(", ")
   end
 
-    def set_end_date
-      self.end_date = start_date + rental_period.to_i.days
-    end
 
-
+  def set_end_date
+    self.end_date = start_date + rental_period.to_i.days
+  end
 end
