@@ -28,7 +28,7 @@ class Contract < ApplicationRecord
       self.amount += price.last.value
     end
 
-    if amount  > 0
+    if amount > 0
       self.total_amount = amount - discount.to_i
     end
   end
@@ -43,6 +43,7 @@ class Contract < ApplicationRecord
 
 
   def set_end_date
+
     self.end_date = start_date + rental_period.to_i.days
   end
 end

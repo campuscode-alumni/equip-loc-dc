@@ -17,6 +17,7 @@
         <% end %>
       </dd>
 
+<<<<<<< HEAD
       <dt>Prazo de Locação</dt>
       <dd><%= @contract.rental_period %></dd>
 
@@ -25,15 +26,33 @@
 
       <dt>Desconto</dt>
       <dd><%= @contract.discount%></dd>
+=======
+  <dt>Valor</dt>
+  <dd><%= number_to_currency @contract.amount %></dd>
+
+  <dt>Desconto</dt>
+  <dd><%= number_to_currency @contract.discount%></dd>
+
+  <dt>Valor Total</dt>
+  <dd><%= number_to_currency @contract.total_amount %></dd>
+>>>>>>> 4c11c4f2598e3c8e7f1f07469eb7fc6ad51b61db
 
       <dt>Valor Total</dt>
       <dd><%= @contract.total_amount %></dd>
 
+<<<<<<< HEAD
       <dt>Forma de Pagamento</dt>
       <dd><%= @contract.payment_method%></dd>
 
       <dt>Data de Início</dt>
       <dd><%= @contract.start_date %></dd>
+=======
+  <dt>Data de Início</dt>
+  <dd><%= l @contract.start_date %></dd>
+
+  <dt>Data de Devolução</dt>
+  <dd><%= l @contract.end_date %></dd>
+>>>>>>> 4c11c4f2598e3c8e7f1f07469eb7fc6ad51b61db
 
       <dt>Data de Devolução</dt>
       <dd><%= @contract.end_date %></dd>
